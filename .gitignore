@@ -1,0 +1,5 @@
+/schematic/kicad/*backups
+/schematic/kicad/*cache
+/schematic/kicad/*.kicad_prl
+
+
