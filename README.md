@@ -17,6 +17,10 @@
 
 ** Currently not working
 
+![pcb top view](https://github.com/Niich/mcu-coin/blob/main/docs/img/v1.0-pcb-top.jpg?raw=true)
+![pcb bottom view](https://github.com/Niich/mcu-coin/blob/main/docs/img/v1.0-pcb-bottom.jpg?raw=true)
+![schematic main](https://github.com/Niich/mcu-coin/blob/main/docs/img/main-sch.jpg?raw=true)
+![schematic antenna](https://github.com/Niich/mcu-coin/blob/main/docs/img/top-antenna-sch.jpg?raw=true)
 
 ## v1.0 known issues
 - [X] SW2 boot select button/GPIO9 
