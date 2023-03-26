@@ -8,14 +8,18 @@
 - 100mAh 302020 battery
 - 7 addressable RGBs
 - 2 GPIO buttons
-- hardware power on/off and boot select
-    - to reduce power draw when off and to guard against bad firmare bricking the device since once it is assembled, battery soldered in and parts glued together, removing power would be very difficult.
+- hardware power on/off and boot select **
+    - to reduce power draw when off and to guard against bad firmare bricking the device since once it is assembled, battery soldered in and parts glued together, removing power to reset device would be very difficult.
 - USB charging
-- wireless charging **
-- WiFi **
-- bluetooth **
+- wireless charging ***
+- WiFi ***
+- bluetooth ***
 
-** Currently not working
+
+** not working on original design but manual fix found
+
+*** Currently not working
+
 
 ![pcb top view](https://github.com/Niich/mcu-coin/blob/main/docs/img/v1.0-pcb-top.jpg?raw=true)
 ![pcb bottom view](https://github.com/Niich/mcu-coin/blob/main/docs/img/v1.0-pcb-bottom.jpg?raw=true)
@@ -42,3 +46,7 @@
     - **Expected:** device connects to WiFi.
     - **Observed:** When 2.4Ghz functions are enabled in firmware the device crashes. 
     - **Fix:** Unknown
+- [ ] Acrylic spacer and diffuser
+    - **Expected:** Top and bottom PCB are seperated and atteched to a 3mm acrylic spacer.
+    - **Observed:** Although the 302020 battery is listed as 3mm thick it is actualy slightly larger so the acrylic part is not thick enought to connect both sides without bending and placing pressure on the LiPo battery
+    - **Ideas:** Make a thicker spacer. 1/8" might be ehough since that is 3.17mm
