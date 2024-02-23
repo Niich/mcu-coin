@@ -1,6 +1,6 @@
 # mcu-coin
 ## Design Goals
-- make a device that is similare in form factor to military chalange coins
+- make a device that is similare in form factor to military challange coins
 - production cost needs to be in the range of traditional coins ($5-$15)
 
 ## V1.0 features
@@ -27,25 +27,29 @@
 ![schematic antenna](https://github.com/Niich/mcu-coin/blob/main/docs/img/top-antenna-sch.jpg?raw=true)
 
 ## v1.0 known issues
-- [X] SW2 boot select button/GPIO9 
+- ✅ SW2 boot select button/GPIO9 
     - **Expected:** when held during boot ESP enters flashing mode.
     - **Observed:** device does not enter boot mode when button is held during boot.
     - **Fix:** After reviewing the ESP docs and the schematic issue was found to be that the button was connected to 3.3v instead of ground. Fixed by cutting trace to +3.3 and bridging the pin to the ground plane.
     ![image of incorrect boot select layout](https://github.com/Niich/mcu-coin/blob/main/docs/img/v1.0-sch-boot-button-bad.png?raw=true)
     ![image of incorrect boot select layout](https://github.com/Niich/mcu-coin/blob/main/docs/img/v1.0-sch-boot-button-good.png?raw=true)
-- [X] SW1 on-off/GPIO6 
+- ✅ SW1 on-off/GPIO6 
     - **Expected:** when device is off pressing this button should turn on the device. while device is active quick presses should be detected on GPIO6. Long pressing when "on" should turn off the device. 
     - **Observed:** Button does not turn the device on. but once on the press can be detected on GPIO6 and long press does turn the device off.
     - **Fix:** After reviewing the schematic issue was found to be that the button was connected to "MainPower" instead of +BATT. meaning that when the device is off there is no voltage on the switch so pressing it did nothing. Fix is connecting the button to +BATT and cutting trace to "MainPower"
     ![image of incorrect boot select layout](https://github.com/Niich/mcu-coin/blob/main/docs/img/v1.0-sch-power-bad.png?raw=true)![image of incorrect boot select layout](https://github.com/Niich/mcu-coin/blob/main/docs/img/v1.0-sch-power-good.png?raw=true)
-- [ ] Wireless charging
+- ❌ Wireless charging
     - **Expected:** when device placed on wireless charging pad it charges
     - **Observed:** Pad detects device but power delivery never stabalises it seems to be failing the negotiation. Issue has been observed on two differant wireless power transmitters
-    - **Fix:** Unknown
-- [ ] 2.4Ghz wireless (WifI/bluetooth)
+    - **Fix:** NONE. This is due to poor efficiency. If placed just right, wireless charging will work, but devices get VERY hot. To resolve this, the coil needs to be measured and revised in future designs. Additionally, the QI standard specifies a ferite layer behind the coil, which is not possible with the current placement of the coil.
+- ❌ 2.4Ghz wireless (WifI/bluetooth)
     - **Expected:** device connects to WiFi.
     - **Observed:** When 2.4Ghz functions are enabled in firmware the device crashes. 
-    - **Fix:** Unknown
+    - **Fix:** NONE. This is related to the luckup/crashing. When WiFi is activated, it interferes with the main clock and causes the device to lockup/crash.
+- ❌ Crashing and hard locks
+    - **Expected:** Device runs coninualy until turned of or battery is drained.
+    - **Observed:** The device runs for a while but randomly locks up and requires a restart. The issue seems worse when LEDs are at full power.
+    - **Fix:** NONE: This is caused by bad placement and routing of the main clock signal. Due to poor design, there is interferance and cross-talk that degrade the clock signal and cause CPU lockup.
 - [ ] Acrylic spacer and diffuser
     - **Expected:** Top and bottom PCB are seperated and atteched to a 3mm acrylic spacer.
     - **Observed:** Although the 302020 battery is listed as 3mm thick it is actualy slightly larger so the acrylic part is not thick enought to connect both sides without bending and placing pressure on the LiPo battery
